@@ -1,7 +1,10 @@
 'use client'
 
 import { useState } from 'react'
- 
+
+const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
+const cb = '&callback=JSON_CALLBACK';
+
 export default function Form() {
     const [query, setQuery] = useState('')
 
@@ -9,9 +12,11 @@ export default function Form() {
 
     const callAPI = async () => {
         try {
-            const res = await fetch(`https://jsonplaceholder.typicode.com/${query}`);
+            const res = await fetch(
+                `${api + query}`);
+            console.log(res);
             const data = await res.json();
-            console.log(data);
+            console.log(data.query.pages);
          } catch (err) {
            console.log(err);
          }
