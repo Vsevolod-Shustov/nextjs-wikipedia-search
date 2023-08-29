@@ -2,9 +2,10 @@ import { Suspense } from 'react';
 import Form from './form'
 import WikiPage from './wikiPage';
 import WikiPagesList from './wikiPagesList';
+import { fetchWiki as getData } from './actions';
 
-const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
-let query = "test";
+// const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
+// let query = "test";
 
 let pagesListToRender = [
   <WikiPage page={{title: "test title 1"}}></WikiPage>,
@@ -12,19 +13,28 @@ let pagesListToRender = [
   <WikiPage page={{title: "test title 3"}}></WikiPage>
 ]
 
-async function getData() {
-    const res = await fetch(`${api + query}`)
-    if (!res.ok) {
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res.json()
-  }
+// async function getData() {
+//   const res = await fetch(`${api + query}`)
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data')
+//   }
+  
+//   return res.json()
+// }
+
+// async function getData() {
+//   const res = await fetch(`http://localhost:3000/api/data`)
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data')
+//   }
+  
+//   return res
+// }
 
 async function buildPagesList(data) {
     let pagesList = [];
-    const pagesData = data.query.pages;
-    console.log('buildPagesList: ' + pagesData[14892].title);
+    const pagesData = data?.query?.pages;
+    //console.log('buildPagesList: ' + pagesData[14892].title);
     for(const page in pagesData) {
         //console.log('pageData: ' + pageData);
         console.log('title: ' + pagesData[page].title);
