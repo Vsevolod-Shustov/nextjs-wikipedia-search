@@ -1,18 +1,24 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
-import WikiPage from './wikiPage';
+import { useState } from 'react'
 
+export default function Form(props) {
+    const [inputQuery, setInputQuery] = useState('')
+    //console.log("Form: setWrapperQuery:" + props.setWrapperQuery)
 
+    const handleInputChange = (e) => {
+        setInputQuery(e.target.value)
+    }
 
-export default function Form() {
-    const [query, setQuery] = useState('')
+    const handleButtonClick = () => {
+        props.setWrapperQuery(inputQuery)
+    }
 
     return (
        <div>
             <div>
-                <input value={query} onChange={e => setQuery(e.target.value)} name="query"></input>
-                <button>Search</button>
+                <input value={inputQuery} onChange={e => handleInputChange(e)} name="query"></input>
+                <button onClick={handleButtonClick}>Search</button>
             </div>
         </div>
     )
