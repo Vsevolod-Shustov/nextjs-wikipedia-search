@@ -8,7 +8,7 @@ export default function ClientWrapper() {
 
     return(
         <>
-            <p>client</p>
+            <h2 className="text-2xl font-bold underline">client</h2>
             <Form setWrapperQuery={setWrapperQuery}></Form>
         </>
     )

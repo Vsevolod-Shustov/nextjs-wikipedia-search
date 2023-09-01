@@ -17,7 +17,7 @@ export default function Form(props) {
     return (
        <div>
             <div>
-                <input value={inputQuery} onChange={e => handleInputChange(e)} name="query"></input>
+                <input value={inputQuery} onChange={e => handleInputChange(e)} name="query" className='border rounded'></input>
                 <button onClick={handleButtonClick}>Search</button>
             </div>
         </div>

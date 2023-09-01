@@ -39,7 +39,7 @@ export default async function Page() {
     return (
         <div>
             <div>
-              <h2>server</h2>
+              <h2 className="text-2xl font-bold underline">server</h2>
               <WikiPagesList data={data}></WikiPagesList>
             </div>
             <div>
