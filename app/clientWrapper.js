@@ -9,9 +9,12 @@ export default function ClientWrapper() {
     const [pagesData, setPagesData] = useState('')
 
     useEffect(() => {
-        console.log("clientWrapper useeffect wrapperQuery: " + wrapperQuery)
+        console.log("ClientWrapper useeffect wrapperQuery: " + wrapperQuery)
         async function fetchData() {
-            const res = await fetch(`http://localhost:3000/api/data`)
+            let fetchUrl = "http://localhost:3000/api/data"
+            if (wrapperQuery) {fetchUrl += "?search=" + wrapperQuery}
+            console.log ("ClientWrapper useEffect fetchUrl: " + fetchUrl)
+            const res = await fetch(`${fetchUrl}`)
             if (!res.ok) {
                 throw new Error('Failed to fetch data')
             }

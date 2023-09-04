@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server'
 
-const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
-let query = "test";
+const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&';
+const apiSearchKey = "gsrsearch=";
+let defaultQuery = "test";
 
-export async function GET() {
-    const res = await fetch(`${api + query}`)
+export async function GET(req) {
+    const {searchParams} = new URL(req.url);
+    const urlQuery = searchParams.get("search");
+    console.log("route.js urlQuery: ")
+    console.log(urlQuery)
+    const query = urlQuery ?? defaultQuery
+    const res = await fetch(`${api + apiSearchKey + query}`)
     if (!res.ok) {
         throw new Error('Failed to fetch data')
     }
