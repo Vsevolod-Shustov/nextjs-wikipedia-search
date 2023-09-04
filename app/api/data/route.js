@@ -9,11 +9,11 @@ export async function GET() {
         throw new Error('Failed to fetch data')
     }
     const data = await res.json()
-    console.log("route.js data: ")
-    console.log(data)
+    // console.log("route.js data: ")
+    // console.log(data)
 
-    console.log("NextResponse.json({ data }): ")
-    console.log(NextResponse.json({ data }))
+    // console.log("route.js NextResponse.json({ data }): ")
+    // console.log(NextResponse.json({ data }))
  
   return NextResponse.json({ data })
 }
