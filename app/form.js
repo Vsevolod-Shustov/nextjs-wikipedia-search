@@ -10,15 +10,27 @@ export default function Form(props) {
         setInputQuery(e.target.value)
     }
 
-    const handleButtonClick = () => {
+    const updateWrapperQuery = () => {
         props.setWrapperQuery(inputQuery)
+    }
+
+    const handleInputKeyPress = (e) => {
+        if(e.code==="Enter") {
+            props.setWrapperQuery(inputQuery)
+        }
     }
 
     return (
        <div>
             <div>
-                <input value={inputQuery} onChange={e => handleInputChange(e)} name="query" className='border rounded'></input>
-                <button onClick={handleButtonClick}>Search</button>
+                <input
+                    value={inputQuery}
+                    onChange={e => handleInputChange(e)}
+                    name="query"
+                    onKeyDown={e => handleInputKeyPress(e)}
+                    className='border rounded'>
+                </input>
+                <button onClick={updateWrapperQuery}>Search</button>
             </div>
         </div>
     )
